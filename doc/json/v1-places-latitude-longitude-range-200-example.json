@@ -1,0 +1,23 @@
+{
+  "latitude": 45.18766625,
+  "longitude": 5.77868795590624,
+  "range": 2,
+  "results": [
+    {
+      "name": "Centre Hébergement & Réinsertion Sociale (c.h.r.s.)",
+      "address": "5 Place De L'eglise",
+      "postal_code": "38610",
+      "city": "Gieres",
+      "latitude": "45.1801152",
+      "longitude": "5.7900028"
+    },
+    {
+      "name": "Structure D'alternative À La Dialyse En Centre",
+      "address": "31 Boulevard Des Alpes",
+      "postal_code": "38240",
+      "city": "Meylan",
+      "latitude": "45.2034863",
+      "longitude": "5.7714513806258"
+    }
+  ]
+}

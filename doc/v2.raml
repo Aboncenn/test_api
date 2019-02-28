@@ -1,0 +1,332 @@
+#%RAML 1.0
+title: API-Cours-WebService
+version: v2
+baseUri: https://api.cours-webservice.arrobe.fr/v2
+protocols:
+  - https
+securitySchemes:
+  custom_scheme:
+    description: "Authenticated by apikey header"
+    type: "x-{other}"
+    describedBy:
+      headers:
+        apikey:
+          description: "Your API key"
+          type: "string"
+      responses:
+        401:
+          description: "'Invalid credentials.' or 'Looser. API Key '123456' does not exist.'"
+
+/category:
+  get:
+    securedBy:
+      - custom_scheme
+    description: "Returns all categories"
+    responses:
+      200:
+        body:
+          application/json:
+            type: !include json/v1-category-200-type.json
+            example: !include json/v1-category-200-example.json
+  post:
+    securedBy:
+      - custom_scheme
+    description: "Create a category"
+    body:
+      application/json:
+        type: !include json/v2-category-post-put-type.json
+        example: !include json/v2-category-post-put-example.json
+    responses:
+      201:
+        body:
+          application/json:
+            type: !include json/v2-category-20x-type.json
+            example: !include json/v2-category-20x-example.json
+      400:
+        body:
+          application/json:
+            type: !include json/v2-category-4xx-type.json
+            example: !include json/v2-category-400-example.json
+      409:
+        body:
+          application/json:
+            type: !include json/v2-category-4xx-type.json
+            example: !include json/v2-category-409-example.json
+/category/{id}:
+  uriParameters:
+    id:
+      type: "number"
+      description: "category's id"
+      example: 1
+  get:
+    securedBy:
+      - custom_scheme
+    description: "Returns a category"
+    responses:
+      200:
+        body:
+          application/json:
+            type: !include json/v1-category-id-200-type.json
+            example: !include json/v1-category-id-200-example.json
+      404:
+        body:
+          application/json:
+            type: !include json/v1-category-id-4xx-type.json
+            example: !include json/v1-category-id-404-example.json
+      406:
+        body:
+          application/json:
+            type: !include json/v1-category-id-4xx-type.json
+            example: !include json/v1-category-id-404-example.json
+  put:
+    securedBy:
+      - custom_scheme
+    description: "Updates a category"
+    body:
+      application/json:
+        type: !include json/v2-category-post-put-type.json
+        example: !include json/v2-category-post-put-example.json
+    responses:
+      202:
+        body:
+          application/json:
+            type: !include json/v2-category-20x-type.json
+            example: !include json/v2-category-20x-example.json
+      400:
+        body:
+          application/json:
+            type: !include json/v2-category-id-4xx-type.json
+            example: !include json/v2-category-id-400-example.json
+      403:
+        body:
+          application/json:
+            type: !include json/v2-category-id-4xx-type.json
+            example: !include json/v2-category-id-403-example.json
+      404:
+        body:
+          application/json:
+            type: !include json/v2-category-id-4xx-type.json
+            example: !include json/v2-category-id-404-example.json
+      406:
+        body:
+          application/json:
+            type: !include json/v2-category-id-4xx-type.json
+            example: !include json/v2-category-id-406-example.json
+      409:
+        body:
+          application/json:
+            type: !include json/v2-category-id-4xx-type.json
+            example: !include json/v2-category-id-409-example.json
+  delete:
+    securedBy:
+      - custom_scheme
+    description: "Deletes a category"
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include json/v2-delete-category-200-example.json
+      403:
+        body:
+          application/json:
+            type: !include json/v2-category-id-4xx-type.json
+            example: !include json/v2-category-id-403-example.json
+      404:
+        body:
+          application/json:
+            type: !include json/v2-category-id-4xx-type.json
+            example: !include json/v2-category-id-404-example.json
+      406:
+        body:
+          application/json:
+            type: !include json/v2-category-id-4xx-type.json
+            example: !include json/v2-category-id-406-example.json
+      409:
+        body:
+          application/json:
+            type: !include json/v2-category-id-4xx-type.json
+            example: !include json/v2-category-id-409-example.json
+/places/{latitude}/{longitude}/{range}:
+  securedBy:
+    - custom_scheme
+  description: "Returns a set of places inside range using the latitude ang longitude center"
+  uriParameters:
+    latitude:
+      type: "number"
+      description: "latitude in degress inside interval [-90;90]"
+      example: 45.18766625
+    longitude:
+      type: "number"
+      description: "longitude in degrees inside interval [-180;180]"
+      example: 5.77868795590624
+    range:
+      type: "number"
+      description: "range in kilometers inside interval [0;100]"
+      example: 10
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: !include json/v1-places-latitude-longitude-range-200-type.json
+            example: !include json/v2-places-latitude-longitude-range-200-example.json
+      400:
+        body:
+          application/json:
+            type: !include json/v1-places-latitude-longitude-range-4xx-type.json
+            example: !include json/v1-places-latitude-longitude-range-400-example.json
+      406:
+        body:
+          application/json:
+            type: !include json/v1-places-latitude-longitude-range-4xx-type.json
+            example: !include json/v1-places-latitude-longitude-range-406-example.json
+      416:
+        body:
+          application/json:
+            type: !include json/v1-places-latitude-longitude-range-4xx-type.json
+            example: !include json/v1-places-latitude-longitude-range-416-example.json
+/places/category/{id}:
+  uriParameters:
+    id:
+      type: "integer"
+      description: "Category's id"
+      example: 1
+  get:
+    securedBy:
+      - custom_scheme
+    description: "Returns all places for the given category"
+    responses:
+      200:
+        body:
+          application/json:
+            type: !include json/v2-places-category-id-200-type.json
+            example: !include json/v2-places-category-id-200-example.json
+      404:
+        body:
+          application/json:
+            type: !include json/v2-places-category-id-404-type.json
+            example: !include json/v2-places-category-id-404-example.json
+/places:
+  post:
+    securedBy:
+      - custom_scheme
+    description: "Creates a place"
+    body:
+      application/json:
+        type: !include json/v2-places-post-type.json
+        example: !include json/v2-places-post-example.json
+    responses:
+      201:
+        body:
+          application/json:
+            type: !include json/v2-places-post-200-type.json
+            example: !include json/v2-places-post-200-example.json
+      400:
+        body:
+          application/json:
+            type: !include json/v2-places-post-4xx-type.json
+            example: !include json/v2-places-post-400-example.json
+      404:
+        body:
+          application/json:
+            type: !include json/v2-places-post-4xx-type.json
+            example: !include json/v2-places-post-404-example.json
+      406:
+        body:
+          application/json:
+            type: !include json/v2-places-post-4xx-type.json
+            example: !include json/v2-places-post-406-example.json
+      409:
+        body:
+          application/json:
+            type: !include json/v2-places-post-4xx-type.json
+            example: !include json/v2-places-post-409-example.json
+/places/{id}:
+  uriParameters:
+    id:
+      type: "integer"
+      description: "Place's id"
+      example: 1
+  get:
+    securedBy:
+      - custom_scheme
+    description: "Returns a place"
+    responses:
+      200:
+        body:
+          application/json:
+            type: !include json/v2-places-id-get-200-type.json
+            example: !include json/v2-places-id-get-200-example.json
+      404:
+        body:
+          application/json:
+            type: !include json/v2-places-id-get-4xx-type.json
+            example: !include json/v2-places-id-get-404-example.json
+      406:
+        body:
+          application/json:
+            type: !include json/v2-places-id-get-4xx-type.json
+            example: !include json/v2-places-id-get-406-example.json
+  patch:
+    securedBy:
+      - custom_scheme
+    description: "Updates a place"
+    body:
+      application/json:
+        type: !include json/v2-places-id-patch-type.json
+        example: !include json/v2-places-id-patch-example.json
+    responses:
+      202:
+        body:
+          application/json:
+            type: !include json/v2-places-id-patch-202-type.json
+            example: !include json/v2-places-id-patch-202-example.json
+      400:
+        body:
+          application/json:
+            type: !include json/v2-places-id-patch-4xx-type.json
+            example: !include json/v2-places-id-patch-400-example.json
+      403:
+        body:
+          application/json:
+            type: !include json/v2-places-id-patch-4xx-type.json
+            example: !include json/v2-places-id-patch-403-example.json
+      404:
+        body:
+          application/json:
+            type: !include json/v2-places-id-patch-4xx-type.json
+            example: !include json/v2-places-id-patch-404-example.json
+      406:
+        body:
+          application/json:
+            type: !include json/v2-places-id-patch-4xx-type.json
+            example: !include json/v2-places-id-patch-406-example.json
+      412:
+        body:
+          application/json:
+            type: !include json/v2-places-id-patch-4xx-type.json
+            example: !include json/v2-places-id-patch-412-example.json
+  delete:
+    securedBy:
+      - custom_scheme
+    description: "Deletes a place"
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include json/v2-places-id-delete-200-example.json
+      403:
+        body:
+          application/json:
+            type: !include json/v2-places-id-delete-4xx-type.json
+            example: !include json/v2-places-id-delete-403-example.json
+      404:
+        body:
+          application/json:
+            type: !include json/v2-places-id-delete-4xx-type.json
+            example: !include json/v2-places-id-delete-404-example.json
+      406:
+        body:
+          application/json:
+            type: !include json/v2-places-id-delete-4xx-type.json
+            example: !include json/v2-places-id-delete-406-example.json

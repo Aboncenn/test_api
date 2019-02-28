@@ -1,0 +1,6 @@
+{
+  "latitude": "number",
+  "longitude": "number",
+  "range": "number",
+  "results": "array"
+}

@@ -1,0 +1,6 @@
+{
+  "msg": "string",
+  "latitude": "number",
+  "longitude": "number",
+  "range": "number"
+}

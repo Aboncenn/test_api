@@ -1,0 +1,6 @@
+{
+  "msg": "string",
+  "address": "string",
+  "postalcode": "string",
+  "city": "string"
+}

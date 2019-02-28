@@ -1,0 +1,12 @@
+{
+  "category": [
+    {
+      "id": 1,
+      "name": "Centre Hospitalier (c.h.)"
+    },
+    {
+      "id": 2,
+      "name": "Centre Hospitalier, Ex Hôpital Local"
+    }
+  ]
+}

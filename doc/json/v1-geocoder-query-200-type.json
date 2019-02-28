@@ -1,0 +1,5 @@
+{
+  "lat": "number",
+  "lng": "number",
+  "query": "string"
+}

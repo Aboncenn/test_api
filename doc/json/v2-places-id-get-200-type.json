@@ -1,0 +1,10 @@
+{
+    "id": "number",
+    "category_id": "number",
+    "name": "string",
+    "address": "string",
+    "postal_code": "string",
+    "city": "string",
+    "latitude": "number",
+    "longitude": "number"
+}

@@ -1,0 +1,7 @@
+{
+  "lat": "number",
+  "lng": "number",
+  "address": "string",
+  "postalcode": "string",
+  "city": "string"
+}

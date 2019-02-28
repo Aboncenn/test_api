@@ -1,0 +1,23 @@
+{
+  "category_id": 1,
+  "place": [
+    {
+      "id": "1",
+      "name": "Centre Hospitalier De Bourg-en-bresse Fleyriat",
+      "address": "900 Route De Paris",
+      "postal_code": "01012",
+      "city": "Bourg-en-bresse",
+      "latitude": "46.220089",
+      "longitude": "5.2107635"
+    },
+    {
+      "id": "106",
+      "name": "Ssr Hotel Dieu De Fleyriat",
+      "address": "47 Boulevard De Brou",
+      "postal_code": "01000",
+      "city": "Bourg-en-bresse",
+      "latitude": "46.201311",
+      "longitude": "5.232525"
+    }
+  ]
+}

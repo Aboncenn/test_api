@@ -1,7 +1,8 @@
 1. git clone repository
 2. cd test_api
-3. composer install
-4. Please import the apiTest-test bdd with informations
+3. cp .env.test .env 
+4. composer install
+5. Please import the apiTest-test bdd with informations
 9. php bin/phpunit
 
 
